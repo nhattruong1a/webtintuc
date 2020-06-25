@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebTinTuc.Models.New>
+
+<style type="text/css">
+    .single-blog-post.featured-post .post-data .post-title h6 {
+        font-size: 40px;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: black;
+        font-weight: 500;
+    }
+
+    .single-blog-post .post-data .post-title h6:hover, .single-blog-post .post-data .post-title h6:focus {
+        color: #ee002d;
+    }
+</style>
+
+@foreach (var item in Model)
+{
+
+    <div class="post-thumb">
+        <a href="@Url.Action("Details","News",new { id = item.ID})"><img src="~/Img_News/@item.image" alt=""></a>
+    </div>
+    <div class="post-data">
+        <p class="post-date"><span>@string.Format("{0:dd/MM/yyyy}", @item.DateSubmitted)</span></p>
+        <a href="@Url.Action("Details","News",new { id = item.ID})" class="post-title" style="text-decoration: none;">
+            <h6>@item.Title</h6>
+        </a>
+        <div class="post-meta">
+            <p class="post-author">Tác giả <a href="#" style="text-decoration: none;">@item.Author</a></p>
+            <p class="post-excerp">@item.Content.Substring(0, 200) ...</p>
+        </div>
+    </div>
+
+}    

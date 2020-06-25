@@ -1,0 +1,7 @@
+﻿@model IEnumerable<WebTinTuc.Models.New>
+
+@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("Details","News",new { id= item.ID})" style="text-decoration: none;">@item.Title</a></li>
+}
+

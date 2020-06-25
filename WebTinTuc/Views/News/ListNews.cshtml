@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WebTinTuc.Models.ListNewsResult>
+
+@foreach (var item in Model)
+{
+    <div class="single-blog-post small-featured-post d-flex">
+        <div class="post-thumb">
+            <a href="@Url.Action("Details","News",new { id = item.ID})"><img src="~/Img_News/@item.image" alt=""></a>
+        </div>
+        <div class="post-data">
+            <a href="@Url.Action("Categories","Layout",new { id=item.ID})" class="post-catagory" style="text-decoration:none;">@item.Name</a>
+            <div class="post-meta">
+                <a href="@Url.Action("Details","News",new { id = item.ID})" class="post-title" style="text-decoration:none;color:black">
+                    <h6>@item.Title</h6>
+                </a>
+                <p class="post-date"><span>@string.Format("{0:dd/MM/yyyy}", @item.DateSubmitted)</span></p>
+            </div>
+        </div>
+    </div>
+}
+

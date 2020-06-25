@@ -1,0 +1,93 @@
+﻿@using WebTinTuc.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<WebTinTuc.Models.New>
+
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>QUẢN LÝ TIN TỨC</h2>
+
+@helper Truncate(string input, int length)
+{
+if(input.Length<length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0,length)<text>...</text>
+}
+}
+
+<p>
+    @Html.ActionLink("Thêm tin mới", "CreateNew")
+</p>
+<table class="table" border="1" >
+    <tr style="text-align:center">
+        <th style="width:200px">
+            Tiêu đề
+        </th>
+        <th style="width:250px">
+            Tiêu đề phụ
+        </th>
+        <th style="width:400px">
+           Nội dung
+        </th>
+        <th style="width:100px">
+            Ảnh
+        </th>
+        <th style="width:100px">
+            Chủ đề
+        </th>
+        <th style="width:50px">
+           Ngày đăng
+        </th>
+        <th style="width:100px">
+            Tác giả
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Truncate(item.Sub_Title, 100)
+        </td>
+        <td>
+            @Truncate(item.Content,100)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateSubmitted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.ID })
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.ID })
+            @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("News", new { page=page}))
+</div>
+<style>
+    .MenuTrang li{
+        display:inline;
+    }
+</style>

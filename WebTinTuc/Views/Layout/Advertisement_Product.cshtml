@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WebTinTuc.Models.Advertisement_Product>
+
+@foreach (var item in Model)
+{
+    <div class="col-12 col-lg-4">
+        <div class="single-blog-post">
+            <div class="post-thumb">
+                <a href="@item.Link" style="text-decoration: none;"><img src="~/Img_Adv_Pro/@item.Image" alt=""></a>
+            </div>
+            <div class="post-data">
+                <a href="@item.Link" class="post-title" style="text-decoration: none;color:black">
+                    <h6>@item.Title</h6>
+                </a>
+                <div class="post-meta">
+                    <div class="post-date"><a href="#" style="text-decoration: none;color:red;"> @string.Format("{0:0,0}", @item.Price) đ</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

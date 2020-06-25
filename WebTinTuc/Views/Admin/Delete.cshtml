@@ -1,0 +1,83 @@
+﻿@model WebTinTuc.Models.New
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xác nhận xóa bài đăng</h2>
+<div>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tiêu đề:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                Tiêu đề phụ:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sub_Title)
+            </dd>
+
+            <dt>
+                Nội dung:
+            </dt>
+
+            <dd style="text-align:justify">
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+
+            <dt>
+                Ảnh:
+            </dt>
+
+            <dd>
+                <img src="@Url.Content("~/Img_News"+ Model.image)" width="120px" />
+            </dd>
+
+            <dt>
+                Chủ đề:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.category.Name)
+            </dd>
+
+            <dt>
+                Ngày đăng:
+            </dt>
+
+            <dd>
+                @String.Format("{0:dd/MM/yyyy}", Model.DateSubmitted)
+            </dd>
+
+            <dt>
+                Tác giả:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Author)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+
+</div>

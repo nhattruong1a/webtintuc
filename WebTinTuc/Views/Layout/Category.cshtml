@@ -1,0 +1,7 @@
+﻿@model IEnumerable<WebTinTuc.Models.category>
+
+@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("Categories","Layout",new { id=item.ID})">@item.Name</a></li>
+    
+}
